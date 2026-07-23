@@ -1,0 +1,11 @@
+pandas
+numpy
+matplotlib
+seaborn
+jupyter
+sqlalchemy
+psycopg2-binary
+prophet
+streamlit
+fastapi
+uvicorn
