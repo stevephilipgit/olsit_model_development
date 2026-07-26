@@ -25,8 +25,9 @@ Raw Data → Data Cleaning → ETL → Feature Engineering → Power BI Dashboar
 
 ---
 
-![Banner](https://example.com)
+![Banner](dashboard/olist-report1.png)
 
+![Banner](dashboard/olist-report2.png)
 # 🛠 Tech Stack
 
 ### Programming
@@ -240,8 +241,8 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
 AI/ML Engineer | Data Analytics Enthusiast
 
-GitHub: https://github.com/<your-username>
+GitHub: https://github.com/stevephilipgit
 
-LinkedIn: https://linkedin.com/in/<your-profile>
+LinkedIn: www.linkedin.com/in/steve-p-25459021a
 
 ---
