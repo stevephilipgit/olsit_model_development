@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Iterable
 
-import numpy as np
 import pandas as pd
 
 
@@ -26,7 +25,12 @@ def count_unique_by_key(df: pd.DataFrame, key_columns: Iterable[str]) -> pd.Seri
     return df[key_cols].nunique(dropna=False)
 
 
-def fk_orphan_counts(child_df: pd.DataFrame, child_key: str, parent_df: pd.DataFrame, parent_key: str) -> pd.Series:
+def referential_integrity_report(
+    child_df: pd.DataFrame,
+    child_key: str,
+    parent_df: pd.DataFrame,
+    parent_key: str,
+) -> pd.Series:
     """Return counts of child keys that do not have a parent match."""
     orphan_keys = set(child_df[child_key].dropna().unique()) - set(parent_df[parent_key].dropna().unique())
     return pd.Series({"orphan_count": len(orphan_keys), "orphan_keys": list(orphan_keys)})
@@ -50,9 +54,9 @@ def date_range_report(df: pd.DataFrame, date_columns: Iterable[str]) -> pd.DataF
     return pd.DataFrame(result)
 
 
-def find_impossible_values(df: pd.DataFrame) -> dict[str, pd.Series]:
+def impossible_values_report(df: pd.DataFrame) -> dict[str, pd.Series]:
     """Audit common impossible values across the Olist tables."""
-    findings = {}
+    findings: dict[str, pd.Series] = {}
 
     if "price" in df.columns:
         findings["negative_price"] = df[df["price"] < 0]["price"]
@@ -64,7 +68,12 @@ def find_impossible_values(df: pd.DataFrame) -> dict[str, pd.Series]:
         findings["delivery_before_purchase"] = df[
             df["order_delivered_customer_date"] < df["order_purchase_timestamp"]
         ]["order_delivered_customer_date"]
-    if "order_item_id" in df.columns:
-        findings["zero_quantity"] = df[df["order_item_id"] == 0]["order_item_id"]
+    if "quantity" in df.columns:
+        findings["zero_quantity"] = df[df["quantity"] == 0]["quantity"]
 
     return findings
+
+
+def cardinality_sanity_report(df: pd.DataFrame, columns: Iterable[str]) -> pd.Series:
+    """Return a quick cardinality sanity report for high-level dimensions."""
+    return df[list(columns)].nunique(dropna=False)
