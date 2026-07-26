@@ -25,6 +25,8 @@ Raw Data → Data Cleaning → ETL → Feature Engineering → Power BI Dashboar
 
 ---
 
+![Banner](https://example.com)
+
 # 🛠 Tech Stack
 
 ### Programming
