@@ -1,5 +1,14 @@
-data/raw/
+.venv/
 venv/
 __pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+catboost_info/
+**/catboost_info/
 .env
-*.pyc
+.env.*
+*.log
+.DS_Store
+
+# Duplicate standalone ML repository retained locally, not part of this repository.
+olist-brazil-late-delivery-ml/
